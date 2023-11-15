@@ -182,6 +182,7 @@ dist
 ### Node Patch ###
 # Serverless Webpack directories
 .webpack/
+.vite
 
 # Optional stylelint cache
 
