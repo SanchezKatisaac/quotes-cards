@@ -1,0 +1,16 @@
+version: "3.7"
+
+services:
+  quotes-cards:
+    build:
+      context: .
+    container_name: quotes-cards
+    image: quotes-cards
+    command: npm run dev
+    env_file:
+      - .env
+    volumes:
+      - .:/app:cached
+      - /app/node_modules
+    ports:
+      - "3000:3000"
