@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import QuoteCard from './Card';
+import QuoteCard from '@/components/Quote/Card';
+
 
 const QuotesList = ({ quotes }) => {
   const [searchTerm, setSearchTerm] = useState('');
