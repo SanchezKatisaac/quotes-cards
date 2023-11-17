@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { Grid, TextField } from '@mui/material';
+import { QuotesListProps, InputChangeEvent } from '@/models'
+
 import QuoteCard from '@/components/Quote/Card';
 
 
-const QuotesList = ({ quotes }) => {
+const QuotesList = ({ quotes }: QuotesListProps) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredQuotes, setFilteredQuotes] = useState(quotes);
 
@@ -13,23 +16,28 @@ const QuotesList = ({ quotes }) => {
     setFilteredQuotes(results);
   }, [quotes, searchTerm]);
 
-  const handleSearch = (event) => {
+  const handleSearch = (event: InputChangeEvent) => {
     setSearchTerm(event.target.value);
   };
 
   return (
     <div>
-      <input
+      <TextField
         type="text"
         placeholder="Buscar frase..."
         value={searchTerm}
         onChange={handleSearch}
+        variant="outlined"
+        fullWidth
+        sx={{ marginY: '15px' }}
       />
-      <div className="cards-container">
+      <Grid container spacing={2}>
         {filteredQuotes.map((quote, index) => (
-          <QuoteCard key={index} quote={quote} />
+          <Grid item xs={4} key={index}>
+            <QuoteCard quote={quote} />
+          </Grid>
         ))}
-      </div>
+      </Grid>
     </div>
   );
 };

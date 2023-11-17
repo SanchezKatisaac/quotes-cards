@@ -1,25 +1,28 @@
 import { useState } from 'react'
 
-import Header from '@/components/Header/Header.component.tsx'
-import QuoteForm from '@/components/Quote/Form.tsx'
-import QuotesList from '@/components/Quote/List.tsx';
+import Header from '@/components/Header'
+import QuoteForm from '@/components/Quote/Form'
+import QuotesList from '@/components/Quote/List';
+import { Container, Typography } from '@mui/material';
 
 function App() {
-  const [quotes, setQuotes] = useState([]);
+  const [quotes, setQuotes] = useState<string[]>([]);
 
-  const handleAddQuote = (newQuote) => {
+  const handleAddQuote = (newQuote: string) => {
     setQuotes([...quotes, newQuote]);
   };
 
   return (
     <>
-      <div className="App">
-        <Header />
+      <Header />
+      <Container maxWidth="md" className='m-10 h-full'>
+        <Typography variant="h2" align="center" sx={{ marginBottom: '15px' }}>
+          Buscador de Frases
+        </Typography>
 
-        <h1>Buscador de frases</h1>
         <QuoteForm onAdd={handleAddQuote} />
         <QuotesList quotes={quotes} />
-      </div>
+      </Container>
     </>
   )
 }
