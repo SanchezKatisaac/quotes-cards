@@ -1,0 +1,44 @@
+{
+  "quotes": [
+    {
+      "id": 1,
+      "description": "Mi abuela cocinó fideos con estofado."
+    },
+    {
+      "id": 2,
+      "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae beatae suscipit voluptatibus quos porro id dolorum voluptatem nam odio, similique sequi ea, nostrum nulla voluptatum optio blanditiis fuga inventore voluptas!"
+    },
+    {
+      "id": 3,
+      "description": "Damián se cortó el pelo."
+    },
+    {
+      "id": 4,
+      "description": "Mi tía fue al supermercado en el auto."
+    },
+    {
+      "id": 5,
+      "description": "Me compré una bicicleta nueva."
+    },
+    {
+      "id": 6,
+      "description": "Tengo turno con el dentista a las 18 horas."
+    },
+    {
+      "id": 7,
+      "description": "Mañana nos vamos de campamento."
+    },
+    {
+      "id": 8,
+      "description": "El intendente fue reelecto."
+    },
+    {
+      "id": 9,
+      "description": "Yo amo a mi familia"
+    },
+    {
+      "id": 10,
+      "description": "El sol saldrá a las 6.30 de la mañana."
+    }
+  ]
+}
