@@ -21,7 +21,7 @@ const QuotesList = ({ quotes }: QuotesListProps) => {
   };
 
   return (
-    <div>
+    <div className='p-5'>
       <TextField
         type="text"
         placeholder="Buscar frase..."
@@ -33,8 +33,16 @@ const QuotesList = ({ quotes }: QuotesListProps) => {
       />
       <Grid container spacing={2}>
         {filteredQuotes.map((quote, index) => (
-          <Grid item xs={4} key={index}>
-            <QuoteCard quote={quote} />
+          <Grid
+            key={index}
+            item
+            xs={100}
+            md={4}
+            className='text-center'
+          >
+            <QuoteCard
+              quote={quote}
+            />
           </Grid>
         ))}
       </Grid>

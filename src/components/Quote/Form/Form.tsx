@@ -26,10 +26,12 @@ const PhraseForm = ({ onAdd }: QuoteFormProps) => {
         label="Agregar frase"
         value={inputValue}
         onChange={handleInputChange}
-        variant="outlined" fullWidth
+        variant="outlined" 
+        fullWidth
+        multiline
         sx={{ marginRight: '8px', maxWidth: '300px' }}
       />
-      <Button variant="contained" type="submit" size="large" endIcon={<AddIcon />} >
+      <Button variant="contained" color='success' type="submit" size="large" endIcon={<AddIcon />} >
         <span className='text-lg'>
           Agregar
         </span>

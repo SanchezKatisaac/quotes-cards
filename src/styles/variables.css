@@ -1,4 +1,5 @@
 :root {
   --primary-color: #61dafb;
   --gray: #b2b2b2;
+  --gradient: linear-gradient(to right, white, var(--primary-color)); 
 }
