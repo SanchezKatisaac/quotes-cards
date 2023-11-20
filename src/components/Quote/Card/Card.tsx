@@ -1,10 +1,14 @@
-import { Quote } from '@/models';
+import { InputChangeEvent, Quote } from '@/models';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
+import { deleteQuote, fetchQuotes } from '@/redux/quote/slice';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, Card, CardContent, TextField, Typography } from '@mui/material';
 
 const QuoteCard = ({ quote }: { quote: Quote }) => {
+  const dispatch = useDispatch<any>()
+
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(quote.description);
 
@@ -21,9 +25,14 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
     setIsEditing(false);
   };
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event: InputChangeEvent) => {
     setEditedText(event.target.value);
   };
+
+  const handleDeleteQuote = (quote: Quote) => {
+    dispatch(deleteQuote(quote))
+    dispatch(fetchQuotes());
+  }
 
   return (
     <Card
@@ -59,7 +68,7 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
             <Typography className='w-full line-clamp-1' variant="h5" onClick={handleEditClick}>
               {quote.description}
             </Typography>
-            <DeleteIcon className='ml-2' sx={{ fontSize: 25 }} />
+            <DeleteIcon className='ml-2' sx={{ fontSize: 25 }} onClick={() => handleDeleteQuote(quote)} />
           </div>
         )}
       </CardContent>

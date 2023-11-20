@@ -20,6 +20,6 @@ export const updateQuote = async (quote: Quote) => {
   return await axiosService.put(`${QUOTES}${quote.id}`, { description: quote.description });
 };
 
-export const deleteQuote = async (id: number) => {
+export const deleteQuoteById = async (id: number) => {
   return await axiosService.delete(`${QUOTES}${id}`);
 };
