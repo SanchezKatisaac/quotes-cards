@@ -1,29 +1,17 @@
-import { useState } from 'react'
+import { Provider } from 'react-redux';
 
-import Header from '@/components/Header'
-import QuoteForm from '@/components/Quote/Form'
-import QuotesList from '@/components/Quote/List';
-import { Container, Typography } from '@mui/material';
+import store from '@/redux/store';
+
+import Header from '@/components/Header';
+import { Home } from '@/pages';
+
 
 function App() {
-  const [quotes, setQuotes] = useState<string[]>([]);
-
-  const handleAddQuote = (newQuote: string) => {
-    setQuotes([...quotes, newQuote]);
-  };
-
   return (
-    <>
+    <Provider store={store}>
       <Header />
-      <Container maxWidth="md" className='m-10 h-full'>
-        <Typography variant="h2" align="center" sx={{ marginBottom: '15px' }}>
-          Buscador de Frases
-        </Typography>
-
-        <QuoteForm onAdd={handleAddQuote} />
-        <QuotesList quotes={quotes} />
-      </Container>
-    </>
+      <Home />
+    </Provider>
   )
 }
 

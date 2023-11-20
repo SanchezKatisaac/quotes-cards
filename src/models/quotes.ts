@@ -1,12 +1,15 @@
 import { ChangeEvent, FormEvent } from "react";
 
-export type QuoteCardProps = {
-  quote: string;
+export interface Quote {
+  id: number,
+  description: string
 };
 
-export type QuotesListProps = {
-  quotes: string[];
-};
+export interface QuoteInitialState {
+  quotesList: Quote[],
+  error: string,
+  loading: boolean
+}
 
 export type QuoteFormProps = {
   onAdd: (newQuote: string) => void;

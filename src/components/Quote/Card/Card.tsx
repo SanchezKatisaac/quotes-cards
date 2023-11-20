@@ -1,12 +1,12 @@
+import { Quote } from '@/models';
 import { useState } from 'react';
-import { QuoteCardProps } from '@/models'
 
-import { Card, CardContent, Typography, TextField, Button } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
+import { Button, Card, CardContent, TextField, Typography } from '@mui/material';
 
-const QuoteCard = ({ quote }: QuoteCardProps) => {
+const QuoteCard = ({ quote }: { quote: Quote }) => {
   const [isEditing, setIsEditing] = useState(false);
-  const [editedText, setEditedText] = useState(quote);
+  const [editedText, setEditedText] = useState(quote.description);
 
   const handleEditClick = () => {
     setIsEditing(true);
@@ -57,9 +57,9 @@ const QuoteCard = ({ quote }: QuoteCardProps) => {
         ) : (
           <div className='flex items-center'>
             <Typography className='w-full line-clamp-1' variant="h5" onClick={handleEditClick}>
-              {quote}
+              {quote.description}
             </Typography>
-            <DeleteIcon className='ml-2' />
+            <DeleteIcon className='ml-2' sx={{ fontSize: 25 }} />
           </div>
         )}
       </CardContent>
