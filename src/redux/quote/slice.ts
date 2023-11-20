@@ -1,5 +1,5 @@
 import { Quote, QuoteInitialState } from "@/models";
-import { createQuote, getQuotes, deleteQuoteById } from "@/services/quotes";
+import { createQuote, getQuotes, deleteQuoteById, updateQuoteById } from "@/services/quotes";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchQuotes = createAsyncThunk(
@@ -28,6 +28,16 @@ export const deleteQuote = createAsyncThunk(
   async (newQuote: Quote, { rejectWithValue }) => {
     try {
       await deleteQuoteById(newQuote.id);
+    } catch (error: any) {
+      return rejectWithValue(error.response.data);
+    }
+  });
+
+export const updateQuote = createAsyncThunk(
+  'quote/updateQuote',
+  async (newQuote: Quote, { rejectWithValue }) => {
+    try {
+      await updateQuoteById(newQuote);
     } catch (error: any) {
       return rejectWithValue(error.response.data);
     }

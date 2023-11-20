@@ -2,7 +2,7 @@ import { InputChangeEvent, Quote } from '@/models';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 
-import { deleteQuote, fetchQuotes } from '@/redux/quote/slice';
+import { deleteQuote, fetchQuotes, updateQuote } from '@/redux/quote/slice';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, Card, CardContent, TextField, Typography } from '@mui/material';
 
@@ -16,20 +16,22 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
     setIsEditing(true);
   };
 
-  const handleSaveClick = () => {
-    console.log({ editedText })
-    handleCloseEdit();
-  };
-
   const handleCloseEdit = () => {
     setIsEditing(false);
+  };
+
+  const handleSaveEditQuote = () => {
+    const quoteChanges: Quote = { id: quote.id, description: editedText }
+    dispatch(updateQuote(quoteChanges))
+    dispatch(fetchQuotes());
+    handleCloseEdit();
   };
 
   const handleInputChange = (event: InputChangeEvent) => {
     setEditedText(event.target.value);
   };
 
-  const handleDeleteQuote = (quote: Quote) => {
+  const handleDeleteQuote = () => {
     dispatch(deleteQuote(quote))
     dispatch(fetchQuotes());
   }
@@ -52,10 +54,9 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
               fullWidth
               multiline
               autoFocus
-              onBlur={handleSaveClick}
             />
             <div className='flex justify-end mt-3'>
-              <Button variant="contained" color='success' onClick={handleSaveClick}>
+              <Button variant="contained" color='success' onClick={handleSaveEditQuote}>
                 Guardar
               </Button>
               <Button variant="contained" color='error' onClick={handleCloseEdit}>
@@ -68,7 +69,7 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
             <Typography className='w-full line-clamp-1' variant="h5" onClick={handleEditClick}>
               {quote.description}
             </Typography>
-            <DeleteIcon className='ml-2' sx={{ fontSize: 25 }} onClick={() => handleDeleteQuote(quote)} />
+            <DeleteIcon className='ml-2' sx={{ fontSize: 25 }} onClick={handleDeleteQuote} />
           </div>
         )}
       </CardContent>
