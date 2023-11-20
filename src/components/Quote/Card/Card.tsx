@@ -1,10 +1,9 @@
 import { InputChangeEvent, Quote } from '@/models';
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
 import { deleteQuote, fetchQuotes, updateQuote } from '@/redux/quote/slice';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Button, Card, CardContent, TextField, Typography } from '@mui/material';
+import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 const QuoteCard = ({ quote }: { quote: Quote }) => {
   const dispatch = useDispatch<any>()
@@ -12,11 +11,11 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedText, setEditedText] = useState(quote.description);
 
-  const handleEditClick = () => {
+  const handleEditQuote = () => {
     setIsEditing(true);
   };
 
-  const handleCloseEdit = () => {
+  const handleCancelEdit = () => {
     setIsEditing(false);
   };
 
@@ -24,7 +23,7 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
     const quoteChanges: Quote = { id: quote.id, description: editedText }
     dispatch(updateQuote(quoteChanges))
     dispatch(fetchQuotes());
-    handleCloseEdit();
+    handleCancelEdit();
   };
 
   const handleInputChange = (event: InputChangeEvent) => {
@@ -59,14 +58,14 @@ const QuoteCard = ({ quote }: { quote: Quote }) => {
               <Button variant="contained" color='success' onClick={handleSaveEditQuote}>
                 Guardar
               </Button>
-              <Button variant="contained" color='error' onClick={handleCloseEdit}>
+              <Button variant="contained" color='error' onClick={handleCancelEdit}>
                 Cancelar
               </Button>
             </div>
           </>
         ) : (
           <div className='flex items-center'>
-            <Typography className='w-full line-clamp-1' variant="h5" onClick={handleEditClick}>
+            <Typography className='w-full line-clamp-1' variant="h5" onClick={handleEditQuote}>
               {quote.description}
             </Typography>
             <DeleteIcon className='ml-2' sx={{ fontSize: 25 }} onClick={handleDeleteQuote} />

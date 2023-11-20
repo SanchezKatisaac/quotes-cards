@@ -8,7 +8,7 @@ import { Card as QuoteCard } from '@/components/Quote';
 
 
 const QuotesList = ({ quotesList }: { quotesList: Quote[] }) => {
-  const noQuotes = quotesList.length == 0;
+  const noQuotes = quotesList.length === 0;
   const [searchTerm, setSearchTerm] = useState('');
 
   const [filteredQuotes, setFilteredQuotes] = useState(quotesList);
@@ -50,7 +50,7 @@ const QuotesList = ({ quotesList }: { quotesList: Quote[] }) => {
               <Grid
                 key={index}
                 item
-                xs={100}
+                xs={12}
                 md={4}
                 className='text-center'
               >

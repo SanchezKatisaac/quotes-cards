@@ -19,7 +19,7 @@ export const createNewQuote = createAsyncThunk(
     try {
       await createQuote(newQuote);
     } catch (error: any) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || 'Error al crear la frase');
     }
   });
 
@@ -29,7 +29,7 @@ export const deleteQuote = createAsyncThunk(
     try {
       await deleteQuoteById(newQuote.id);
     } catch (error: any) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response?.data || 'Error al borrar la frase');
     }
   });
 
@@ -39,7 +39,7 @@ export const updateQuote = createAsyncThunk(
     try {
       await updateQuoteById(newQuote);
     } catch (error: any) {
-      return rejectWithValue(error.response.data);
+      return rejectWithValue(error.response.data || 'Error al actualizar la frase');
     }
   });
 

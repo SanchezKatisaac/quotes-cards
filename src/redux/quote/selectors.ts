@@ -1,5 +1,5 @@
 import { createDraftSafeSelector } from '@reduxjs/toolkit';
-import { RootState } from '../store';
+import { RootState } from '@/redux/store';
 
 const selectSelf = (state: RootState) => state;
 

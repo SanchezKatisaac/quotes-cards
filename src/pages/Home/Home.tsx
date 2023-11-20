@@ -15,11 +15,6 @@ const Home = () => {
   const dispatch = useDispatch<any>()
   const quotesList: Quote[] = useSelector(getQuotesList);
 
-  // const handleAddQuote = (newQuote: string) => {
-  //   // setQuotes([...quotes, newQuote]);
-  //   console.log(newQuote)
-  // };
-
   useEffect(() => {
     dispatch(fetchQuotes());
   }, []);
@@ -30,9 +25,7 @@ const Home = () => {
         Buscador de Frases
       </Typography>
 
-      <QuoteForm
-      // onAdd={handleAddQuote} 
-      />
+      <QuoteForm />
       <QuotesList quotesList={quotesList} />
     </Container>
   );

@@ -1,6 +1,6 @@
-import './Header.css'
+import './Header.css';
 
-import reactLogo from '@/assets/react.svg'
+import reactLogo from '@/assets/react.svg';
 
 
 const Header = () => {
