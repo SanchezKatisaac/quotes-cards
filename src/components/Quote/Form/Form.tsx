@@ -1,10 +1,13 @@
+import { InputChangeEvent, formEvent } from '@/models';
 import { useState } from 'react';
-import { QuoteFormProps, InputChangeEvent, formEvent } from '@/models';
+import { useDispatch } from 'react-redux';
 
-import { Button, TextField } from '@mui/material';
+import { createNewQuote, fetchQuotes } from '@/redux/quote/slice';
 import AddIcon from '@mui/icons-material/Add';
+import { Button, TextField } from '@mui/material';
 
-const PhraseForm = ({ onAdd }: QuoteFormProps) => {
+const QuoteForm = () => {
+  const dispatch = useDispatch<any>()
   const [inputValue, setInputValue] = useState('');
 
   const handleInputChange = (event: InputChangeEvent) => {
@@ -14,8 +17,15 @@ const PhraseForm = ({ onAdd }: QuoteFormProps) => {
   const handleSubmit = (event: formEvent) => {
     event.preventDefault();
     if (inputValue.trim() !== '') {
-      onAdd(inputValue);
-      setInputValue('');
+      try {
+        const newQuote = { description: inputValue }
+
+        dispatch(createNewQuote(newQuote));
+        dispatch(fetchQuotes());
+        setInputValue('');
+      } catch (error) {
+        console.log(error)
+      }
     }
   };
 
@@ -26,7 +36,7 @@ const PhraseForm = ({ onAdd }: QuoteFormProps) => {
         label="Agregar frase"
         value={inputValue}
         onChange={handleInputChange}
-        variant="outlined" 
+        variant="outlined"
         fullWidth
         multiline
         sx={{ marginRight: '8px', maxWidth: '300px' }}
@@ -40,4 +50,4 @@ const PhraseForm = ({ onAdd }: QuoteFormProps) => {
   );
 };
 
-export default PhraseForm;
+export default QuoteForm;

@@ -1,20 +1,24 @@
-import { useState, useEffect } from 'react';
-import { Grid, TextField } from '@mui/material';
-import { QuotesListProps, InputChangeEvent } from '@/models'
+import { useEffect, useState } from 'react';
 
-import QuoteCard from '@/components/Quote/Card';
+import { InputChangeEvent, Quote } from '@/models';
+import AddIcon from '@mui/icons-material/AddCircle';
+import { Grid, TextField, Typography } from '@mui/material';
+
+import { Card as QuoteCard } from '@/components/Quote';
 
 
-const QuotesList = ({ quotes }: QuotesListProps) => {
+const QuotesList = ({ quotesList }: { quotesList: Quote[] }) => {
+  const noQuotes = quotesList.length == 0;
   const [searchTerm, setSearchTerm] = useState('');
-  const [filteredQuotes, setFilteredQuotes] = useState(quotes);
+
+  const [filteredQuotes, setFilteredQuotes] = useState(quotesList);
 
   useEffect(() => {
-    const results = quotes.filter((quote) =>
-      quote.toLowerCase().includes(searchTerm.toLowerCase())
+    const results = quotesList.filter((quote: Quote) =>
+      quote.description.toLowerCase().includes(searchTerm.toLowerCase())
     );
     setFilteredQuotes(results);
-  }, [quotes, searchTerm]);
+  }, [quotesList, searchTerm]);
 
   const handleSearch = (event: InputChangeEvent) => {
     setSearchTerm(event.target.value);
@@ -31,21 +35,33 @@ const QuotesList = ({ quotes }: QuotesListProps) => {
         fullWidth
         sx={{ marginY: '15px' }}
       />
-      <Grid container spacing={2}>
-        {filteredQuotes.map((quote, index) => (
-          <Grid
-            key={index}
-            item
-            xs={100}
-            md={4}
-            className='text-center'
-          >
-            <QuoteCard
-              quote={quote}
-            />
+
+      {noQuotes ? (
+        <div className='mt-12 w-full text-center cursor-pointer'>
+          <Typography variant="h3">
+            Animate y carga tu primera frase
+          </Typography>
+          <AddIcon className='mt-3' sx={{ color: 'var(--primary-color)', fontSize: 50 }} />
+        </div>
+      )
+        : (
+          <Grid container spacing={2}>
+            {filteredQuotes.map((quote: Quote, index: number) => (
+              <Grid
+                key={index}
+                item
+                xs={100}
+                md={4}
+                className='text-center'
+              >
+                <QuoteCard
+                  quote={quote}
+                />
+              </Grid>
+            ))}
           </Grid>
-        ))}
-      </Grid>
+        )
+      }
     </div>
   );
 };

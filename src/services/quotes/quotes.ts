@@ -13,7 +13,7 @@ export const getQuoteById = async (id: number) => {
 };
 
 export const createQuote = async (newQuote: object) => {
-  return await axiosService.post(QUOTES, { newQuote });
+  return await axiosService.post(QUOTES, { ...newQuote });
 };
 
 export const updateQuote = async (quote: Quote) => {
