@@ -9,7 +9,7 @@ Este proyecto se encuentra desarrollado con **React 18** en **Vite** y está con
 
 - Docker (mínimo v20.10.12)
 - Docker Compose (mínimo v1.25.0)
-    NOTA: A partir de la última versión a la fecha (08-02-2023), al instalar Docker, Docker Compose está disponible como un parámetro. No se utiliza más `docker-compose`.
+- **NOTA**: A partir de la última versión a la fecha (08-02-2023), al instalar Docker, Docker Compose está disponible como un parámetro. No se utiliza más `docker-compose`.
     [Documentación oficial](https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository)
 
 Para verificar que todo esté correctamente instalado, ejecuta el siguiente comando:
@@ -36,7 +36,6 @@ docker compose up
 
 Una vez seguidos estos pasos, podrás acceder al proyecto desde:
  - Local: http://localhost:3000/
- - Red: http://172.22.0.2:3000/
 
 
 ### 2.2 Comandos dentro del contenedor
