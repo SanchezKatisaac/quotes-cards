@@ -1,5 +1,5 @@
 import { Quote, QuoteInitialState } from "@/models";
-import { createQuote, getQuotes, deleteQuoteById, updateQuoteById } from "@/services/quotes";
+import { createQuote, deleteQuoteById, getQuotes, updateQuoteById } from "@/services/quotes";
 import { PayloadAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 export const fetchQuotes = createAsyncThunk(

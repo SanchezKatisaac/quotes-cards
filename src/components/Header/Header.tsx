@@ -1,5 +1,3 @@
-import './Header.css';
-
 import reactLogo from '@/assets/react.svg';
 
 
