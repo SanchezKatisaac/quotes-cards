@@ -20,7 +20,7 @@ docker ps
 
 ## 2. Configuración
 
-Para comenzar, clona el repositorio y utiliza la rama **Master** o **Main**:
+Para comenzar, clona el repositorio y utiliza la rama **Master**:
 ```bash
 git clone https://github.com/SanchezKatisaac/quotes-cards.git
 ```
